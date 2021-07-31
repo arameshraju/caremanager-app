@@ -27,13 +27,25 @@ class PatinetMaster extends Component {
 
   handleSubmit(event) {
     console.log("Submit" + this.state.mobile);
-    this.patient.addPatient({
-      pid: Date.now(),
-      name: this.state.name,
-      age: this.state.age,
-      mobile: this.state.mobile,
-      village: this.state.village
-    });
+
+    var bData={
+             pid: 0,
+             name: this.state.name,
+             age: this.state.age,
+             mobile: this.state.mobile,
+             village: this.state.village
+           }
+        const requestOptions = {
+           method: 'POST',
+           headers: { 'Content-Type': 'application/json' },
+           body: JSON.stringify(bData)
+        };
+        fetch('http://localhost:8080/patient', requestOptions)
+           .then(response => response.json())
+           .then(data => function(data){
+                console.log(data);
+           }
+        );
     event.preventDefault();
   }
   render() {

@@ -2,6 +2,7 @@ package com.bao.caremanager.app.restcontrollers;
 
 
 import com.bao.caremanager.app.model.Doctor;
+import com.bao.caremanager.app.model.Patient;
 import com.bao.caremanager.app.service.CareService;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,5 +32,12 @@ public class CareController {
         System.out.println("data " + doctor.getName());
         care.InsertDoctor(doctor);
         return  new ResponseEntity<>(doctor, HttpStatus.OK);
+    }
+    @PostMapping("/patient")
+    public ResponseEntity<?> addDoctor(@RequestBody Patient patient)
+    {
+        System.out.println("data " + patient.getName());
+        care.insertPatient(patient);
+        return  new ResponseEntity<>(patient, HttpStatus.OK);
     }
 }

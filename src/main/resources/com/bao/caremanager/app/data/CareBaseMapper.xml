@@ -8,4 +8,7 @@
         INSERT INTO care.doctor (doc_name, doc_qualification, doc_mobile, doc_registration, doc_email, doc_address)
             VALUES (#{name},#{qualification}, #{mobile} , #{reg}, #{email},#{address} );
     </insert>
+    <insert id="insertPatient" parameterType="com.bao.caremanager.app.model.Patient">
+        INSERT INTO care.patient ( name, age, mobile, village) VALUES ( #{name}, #{age}, #{mobile}, #{village});
+    </insert>
 </mapper>
