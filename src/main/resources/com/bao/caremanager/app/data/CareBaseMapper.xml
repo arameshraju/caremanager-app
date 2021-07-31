@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bao.caremanager.app.data.CareBaseMapper">
+    <select id="getDoctor" resultType="java.util.HashMap"  >
+        select doc_name, doc_qualification, doc_mobile, doc_registration, doc_email, doc_address from market.monthly_expiry from care.doctor
+    </select>
+    <insert id="insertDoctor"   parameterType="com.bao.caremanager.app.model.Doctor" >
+        INSERT INTO care.doctor (doc_name, doc_qualification, doc_mobile, doc_registration, doc_email, doc_address)
+            VALUES (#{name},#{qualification}, #{mobile} , #{reg}, #{email},#{address} );
+    </insert>
+</mapper>

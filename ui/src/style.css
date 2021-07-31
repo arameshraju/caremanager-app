@@ -1,0 +1,24 @@
+h1,
+p {
+  font-family: Lato;
+}
+li.nav-item {
+  margin-left: 20px;
+  text-decoration: none;
+}
+li.nav-item a:link {
+  text-decoration: none;
+  color: wheat;
+}
+li.nav-item a:hover {
+  text-decoration: none;
+  color: wheat;
+}
+li.nav-item a:visited {
+  text-decoration: none;
+  color: white;
+}
+li.nav-item a:active {
+  text-decoration: none;
+  color: white;
+}
