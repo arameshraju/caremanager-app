@@ -6,17 +6,41 @@ import TransData from "./../service/TransData";
 class Appointment extends Component {
   constructor(props) {
     super(props);
-    this.doctor = new Doctor();
+//    this.doctor = '' ;
+    this.doctors = [];
     this.transData = new TransData();
-
     this.state = {
       doctor: "",
-      Symptoms: ""
+      Symptoms: "",
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+//    this.fetchDoctor = this.fetchDoctor.bind(this);
+    this.fetchDoctor();
 
     console.log(this.props);
+  }
+  componentDidMount() {
+          this.fetchDoctor();
+//          this.timer = setInterval(() => this.fetchDoctor(), 5000);
+  }
+  fetchDoctor(){
+          const requestOptions = {
+                 method: 'GET',
+                 headers: { 'Content-Type': 'application/json' },
+                 body:  ''
+             };
+             fetch('http://localhost:8080/getdoctors' )
+                 .then(response => response.json())
+                 .then(data =>  {
+                 console.log("getdoctors");
+                      console.log(data);
+//                       this.setState({...this.state, doctors: data});
+                      this.doctors=data;
+                      console.log(this.doctors);
+                 }
+             );
+
   }
   handleChange(event) {
     const target = event.target;
@@ -66,15 +90,16 @@ class Appointment extends Component {
 
               <tbody>
                 <tr>
-                  <td> {this.props.appData.name} </td>{" "}
+                  <td> {this.props.appData.name} </td>
+                  <td> a{this.state.doctors } </td>
                   <td>
                     <select
                       name="doctor"
                       value={this.state.doctor}
                       onChange={this.handleChange}
                     >
-                      {this.doctor.SearchData().map(item => (
-                        <option value={item.name}>{item.name}</option>
+                      {this.doctors.map(item => (
+                        <option value={item.doc_name}>{item.doc_name}</option>
                       ))}
                     </select>
                   </td>

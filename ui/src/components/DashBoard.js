@@ -12,6 +12,8 @@ class DashBoard extends React.Component {
     // this.openAppointment = this.openAppointment.bind(this);
   }
 
+
+
   openAppointment = data => {
     console.log("Appointment " + data.name);
     this.setState({ appData: data });
@@ -23,7 +25,21 @@ class DashBoard extends React.Component {
 
   handleSubmit(event) {
     // alert("An essay was submitted: " + this.state.value);
-    this.setState({ pData: this.patient.SearchData(event.target.value) });
+//    this.setState({ pData: this.patient.SearchData(event.target.value) });
+
+        const requestOptions = {
+               method: 'POST',
+               headers: { 'Content-Type': 'application/json' },
+               body:  this.state.value
+           };
+           fetch('http://localhost:8080/searchpatient', requestOptions)
+               .then(response => response.json())
+               .then(data =>  {
+               console.log("searchpatient");
+                this.state.pData=data;
+                    console.log(data);
+               }
+           );
     event.preventDefault();
   }
   render() {

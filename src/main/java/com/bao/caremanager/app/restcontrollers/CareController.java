@@ -18,14 +18,21 @@ public class CareController {
      @Autowired
      CareService care;
 
-    @RequestMapping("/rest")
+    @RequestMapping("/getdoctors")
     public ResponseEntity<Object> getSample()
     {
 //        return care.getSample();
         return  new ResponseEntity<>(care.getDoctor(), HttpStatus.OK);
 
     }
-//    @RequestMapping("/doctor")
+    @RequestMapping("/searchpatient")
+    public ResponseEntity<Object> searchPatient(@RequestBody String search)
+    {
+        System.out.println(search);
+        return  new ResponseEntity<>(care.getDoctor(), HttpStatus.OK);
+
+    }
+
     @PostMapping("/doctor")
     public ResponseEntity<?> addDoctor(@RequestBody Doctor doctor)
     {
